@@ -19,6 +19,12 @@ public class StudentController {
         return "students/index";
     }
 
+    @GetMapping("/students/new")
+    public String createStudent(Model model) {
+        model.addAttribute("student", new Student());
+        return "students/new";
+    }
+
     @GetMapping("/students/edit/{id}")
     public String students(@PathVariable("id") Long id, Model model) {
         Student student = this.studentService.findById(id);

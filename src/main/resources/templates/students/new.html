@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Student</h2>
+  <form th:action="@{/students/save}" th:object="${student}" method="post">
+    <div class="mb-3">
+      <label for="studentNumber" class="form-label">Student Number</label>
+      <input type="text" class="form-control" id="studentNumber" th:field="*{studentNumber}" />
+    </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" th:field="*{firstName}" />
+    </div>
+    <div class="mb-3">
+      <label for="middleName" class="form-label">Middle Name</label>
+      <input type="text" class="form-control" id="middleName" th:field="*{middleName}" />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lastName" th:field="*{lastName}" />
+    </div>
+    <div class="mb-3">
+      <label for="cgpa" class="form-label">CGPA</label>
+      <input type="text" class="form-control" id="cgpa" th:field="*{cgpa}" />
+    </div>
+    <div class="mb-3">
+      <label for="enrollmentDate" class="form-label">Enrollment Date</label>
+      <input type="date" class="form-control" id="enrollmentDate" th:field="*{enrollmentDate}" />
+    </div>
+    <div class="mb-3">
+      <label for="international" class="form-label">International</label>
+      <select class="form-select" id="international" th:field="*{isInternational}">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
+
+<footer class="footer bg-light text-center py-3">
+  <div class="container">
+    <span>&copy; 2023 Your App. All rights reserved.</span>
+  </div>
+</footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
