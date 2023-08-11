@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Student List</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Student Number</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
+      <th>CGPA</th>
+      <th>Enrollment Date</th>
+      <th>International</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.studentId}"></td>
+      <td th:text="${student.studentNumber}"></td>
+      <td th:text="${student.firstName}"></td>
+      <td th:text="${student.middleName} == null ? '' : ${student.middleName}"></td>
+      <td th:text="${student.lastName}"></td>
+      <td th:text="${student.cgpa}"></td>
+      <td th:text="${#dates.format(student.enrollmentDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="${student.isInternational} ? 'Yes' : 'No'"></td>
+      <td>
+        <a th:href="@{/students/edit/{id}(id=${student.studentId})}" class="btn btn-secondary">Edit</a>
+        <form th:action="@{/students/delete/{id}(id=${student.studentId})}" method="post">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer class="footer bg-light text-center py-3">
+  <div class="container">
+    <span>&copy; 2023 Your App. All rights reserved.</span>
+  </div>
+</footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
